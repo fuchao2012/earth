@@ -5,7 +5,7 @@
 "use strict";
 
 console.log("============================================================");
-console.log(new Date().toISOString() + " - Starting");
+console.log(new Date().toISOString() + " - 后天服务开始");
 
 var util = require("util");
 
@@ -40,7 +40,7 @@ function logger() {
         ':date - info: :remote-addr :req[cf-connecting-ip] :req[cf-ipcountry] :method :url HTTP/:http-version ' +
         '":user-agent" :referrer :req[cf-ray] :req[accept-encoding]\\n:request-all\\n\\n:response-all\\n');
 }
-
+// 启动服务时调用第二个参数作为启动服务的端口
 var port = process.argv[2];
 var express = require("express");
 var app = express();
