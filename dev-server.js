@@ -5,7 +5,7 @@
 "use strict";
 
 console.log("============================================================");
-console.log(new Date().toISOString() + " - 后天服务开始");
+console.log(new Date().toISOString() + " - 后台服务开始");
 
 var util = require("util");
 
@@ -17,7 +17,7 @@ function compressionFilter(req, res) {
 }
 
 /**
- * Adds headers to a response to enable caching.
+ * 设置头部,实现数据缓存功能
  */
 function cacheControl() {
     return function(req, res, next) {
@@ -25,7 +25,13 @@ function cacheControl() {
         return next();
     };
 }
-
+/**
+ * 日志服务,调用express.logger 方法,监听 特殊字符串
+ * date --- 数据传输日期
+ * response-all 服务器返回给客户端的头部数据
+ * request-all 服务端请求的头部数据
+ * @returns {*}
+ */
 function logger() {
     express.logger.token("date", function() {
         return new Date().toISOString();
@@ -51,4 +57,4 @@ app.use(logger());
 app.use(express.static("public"));
 
 app.listen(port);
-console.log("Listening on port " + port + "...");
+console.log("正在监听端口:  " + port);
